@@ -2,31 +2,36 @@ package com.nilsel;
 
 public class HobiOzelListesi {
 
-	boolean[][] hobiListesi = new boolean[2][4];
+	String[] hobiListesi;
 	int boyut = 0;
 
-	public void add(boolean[] hobiler) {
+	public void add(String hobi) {
 
-		if (boyut >= hobiListesi.length) {
+		if (hobiListesi == null) {
+			hobiListesi = new String[1]; //
+			hobiListesi[0] = hobi;
+		} // if
 
-			// Hobi listesi boyutu yetmiyorsa, yeni bir büyük dizi oluşturup eski verileri
-			// kopyala
-
-			boolean[][] tmp = new boolean[boyut + 1][hobiler.length];
+		else {
+			String[] tmp = new String[boyut + 1]; // listenin kapasitesi +1
 
 			for (int i = 0; i < boyut; i++) {
 				tmp[i] = hobiListesi[i];
 			}
 
-			tmp[boyut] = hobiler;
+			tmp[boyut] = hobi;
+
 			hobiListesi = tmp;
-		} else {
 
-			// Hobi listesi boyutu yeterliyse doğrudan verileri ekleyebiliriz
-			hobiListesi[boyut] = hobiler;
-		}
+		} // for
 
-		boyut++; // Toplam kişi sayısını artır
+		boyut++;
+	}// add_methodu
+
+	public String list(int sayi) {
+
+		return (hobiListesi[sayi]);
+
 	}
 
 }

@@ -33,6 +33,7 @@ public class Runner {
 
 			System.out.print("Seçiniz......: ");
 			int secim = sc.nextInt();
+
 			sc.nextLine();
 
 			switch (secim) {
@@ -60,37 +61,42 @@ public class Runner {
 				System.out.println("Kimin hobileri?");
 				String hobiSecim = sc.nextLine();
 
-				boolean hobiDizi[][] = null;
-				int hobiIndex = -1;
-
 				for (int j = 0; j < ogrenciList.length(); j++) {
 					if (hobiSecim.equals(ogrenciList.list(j))) {
-						hobiDizi = new boolean[j][4];
-						hobiIndex = j;
+
 						break; // tekrar dönmemesi için
 					}
 				}
 
-				if (hobiIndex != -1) {
-					System.out.println("Yürümekten hoşlanır mısın[E/H]?:");
-					String cevap1 = sc.nextLine();
-					hobiDizi[hobiIndex][0] = cevap1.equalsIgnoreCase("E");
+				System.out.println("Yürümekten hoşlanır mısın[E/H]?:");
+				String cevap1 = sc.nextLine();
+				if (cevap1.equalsIgnoreCase("E")) {
 
-					// ----------
-					System.out.println("Kitap okumaktan hoşlanır mısın[E/H]?:");
-					String cevap2 = sc.nextLine();
-					hobiDizi[hobiIndex][1] = cevap2.equalsIgnoreCase("E");
+					hobiList.add("Yürümek");
+				}
 
-					// ----------
-					System.out.println("Spor rutinlerin var mı[E/H]?:");
-					String cevap3 = sc.nextLine();
-					hobiDizi[hobiIndex][2] = cevap3.equalsIgnoreCase("E");
+				System.out.println("Kitap okumaktan hoşlanır mısın[E/H]?:");
+				String cevap2 = sc.nextLine();
+				if (cevap2.equalsIgnoreCase("E")) {
 
-					// ----------
-					System.out.println("Kod yazmaktan hoşlanır mısın[E/H]?:");
-					String cevap4 = sc.nextLine();
-					hobiDizi[hobiIndex][3] = cevap4.equalsIgnoreCase("E");
-				} else {
+					hobiList.add("Kitap okumak");
+				}
+				System.out.println("Spor rutinlerin var mı[E/H]?:");
+				String cevap3 = sc.nextLine();
+				if (cevap3.equalsIgnoreCase("E")) {
+
+					hobiList.add("Spor");
+				}
+				System.out.println("Kod yazmaktan hoşlanır mısın[E/H]?:");
+				String cevap4 = sc.nextLine();
+
+				if (cevap4.equalsIgnoreCase("E")) {
+
+					hobiList.add("Kod yazmak");
+				}
+
+				else {
+
 					System.out.println("Bu isimde bir öğrenci bulunamadı.");
 				}
 
@@ -114,28 +120,32 @@ public class Runner {
 
 			case 4:
 
-				System.out.println(" Ad\t| Hobileri\t\t| Maaş Beklentisi");
+				System.out.println("No\t Adı\t Hobileri\t Maas Beklentisi");
 
 				for (int i = 0; i < ogrenciList.length(); i++) {
 
-					System.out.print(ogrenciList.list(i));
-					System.out.println();
+					System.out.println(
+							i + "\t" + ogrenciList.list(i) + "\t" + hobiList.list(i) + "\t\t" + maasList.list(i));
 
-					// System.out.println(hobiList.list(i));
-					// System.out.println();
-
-					System.out.println(maasList.list(i));
-					System.out.println();
-
-					System.out.println();
 				}
+
 				break;
 
-//
-//				System.out.println("Sınıf Listesi:");
-//
-//				ogrenciList.list();
-			}
-		}
+			case 0:
+
+				status = false;
+
+				System.err.println("Çıkış yapıldı");
+
+			default:
+				System.out.println("Lütfen geçerli bir seçim yapınız!");
+
+				break;
+
+			} // switch
+
+		} // while
+		sc.close();
 	}
+
 }
